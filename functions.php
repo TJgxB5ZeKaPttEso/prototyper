@@ -114,6 +114,7 @@ add_action( 'widgets_init', 'prototyper_widgets_init' );
  * Enqueue scripts and styles.
  */
 function prototyper_scripts() {
+
 	wp_enqueue_style( 'prototyper-style', get_stylesheet_uri() );
 
 	wp_enqueue_script( 'prototyper-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20120206', true );
@@ -124,7 +125,14 @@ function prototyper_scripts() {
 		wp_enqueue_script( 'comment-reply' );
 	}
 }
-add_action( 'wp_enqueue_scripts', 'prototyper_scripts' );
+add_action( 'wp_enqueue_scripts', 'prototyper_scripts', 11 );
+
+function bootstrap_support() {
+
+	wp_enqueue_style( 'bootstrap-style', "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" );
+}
+add_action( 'wp_enqueue_scripts', 'bootstrap_support' , 10 );
+
 
 /**
  * Implement the Custom Header feature.

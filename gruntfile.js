@@ -22,7 +22,7 @@ module.exports = function (grunt) {
                 tasks: ['jshint', 'uglify']
             },
             images: {
-                files: ['images/**/*.{png,jpg,gif}'],
+                files: ['images/**/*.{png,jpg,gif,svg}'],
                 tasks: ['imagemin']
             }
         },
@@ -35,10 +35,7 @@ module.exports = function (grunt) {
                     require: 'susy'
                 },
                 files: {
-                    'sass/build/style.css': 'sass/style.scss',
-                    'sass/build/content-sidebar.css': 'sass/content-sidebar.scss',
-                    'sass/build/tribe-events.css': 'sass/tribe-events.scss'
-
+                    'sass/build/style.css': 'sass/style.scss'
                 }
             }
         },
@@ -66,21 +63,7 @@ module.exports = function (grunt) {
             minify: {
                 expand: true,
                 cwd: 'sass/build',
-                src: ['*.css', '!*.min.css', '!content-sidebar.css', '!tribe-events.css'],
-                ext: '.css'
-            },
-            optionallayouts: {
-                expand: true,
-                cwd: 'sass/build',
-                src: ['content-sidebar.css'],
-                dest: 'layouts',
-                ext: '.css'
-            },
-            tribeevents: {
-                expand: true,
-                cwd: 'sass/build',
-                src: ['tribe-events.css'],
-                dest: 'tribe-events',
+                src: ['*.css', '!*.min.css'],
                 ext: '.css'
             }
         },
@@ -134,17 +117,15 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'images/src/',
-                    src: ['**/*.{png,jpg,gif}'],
-                    dest: 'dist/'
+                    src: ['**/*.{png,jpg,gif,svg}'],
+                    dest: 'images/dist/'
                 }]
             }
         },
-
-
     });
 
     // rename tasks
     // register task
-    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin', 'watch']);
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin' , 'watch']);
 
 };
